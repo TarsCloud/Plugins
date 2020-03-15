@@ -204,7 +204,7 @@ namespace JavaTarsPrxCbGenerator
                                                         method->input_type());
             (*vars)["output_type"] = MessageFullJavaName(generate_nano,
                                                          method->output_type());
-            (*vars)["lower_method_name"] = LowerMethodName(method);
+            (*vars)["lower_method_name"] = method->name();
             (*vars)["method_field_name"] = MethodPropertiesFieldName(method);
             bool client_streaming = method->client_streaming();
             bool server_streaming = method->server_streaming();
