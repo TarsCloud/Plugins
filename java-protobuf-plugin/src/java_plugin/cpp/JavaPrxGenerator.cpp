@@ -237,8 +237,16 @@ namespace JavaTarsPrxGenerator
                                 "$output_type$ $lower_method_name$($input_type$ request)");
                         p->Print(";\n");
                         p->Print(
+                        		*vars,
+                                "$output_type$ $lower_method_name$($input_type$ request, @TarsContext java.util.Map<String, String> ctx)");
+                        p->Print(";\n");
+                        p->Print(
                                 *vars,
                                 "void async_$lower_method_name$(@TarsCallback $service_name$PrxCallback callback, $input_type$ request)");
+                        p->Print(";\n");
+                        p->Print(
+                                *vars,
+                                "void async_$lower_method_name$(@TarsCallback $service_name$PrxCallback callback, $input_type$ request, @TarsContext java.util.Map<String, String> ctx)");
                     }
                     break;
                 case ASYNC_CALL:
@@ -283,7 +291,8 @@ namespace JavaTarsPrxGenerator
         p->Print("import com.qq.tars.protocol.tars.annotation.TarsCallback;\n"
                          "import com.qq.tars.rpc.protocol.proto.ProtoCodec;\n"
                          "import com.qq.tars.protocol.annotation.Servant;\n"
-                         "import com.qq.tars.protocol.annotation.ServantCodec;\n\n");
+                         "import com.qq.tars.protocol.annotation.ServantCodec;\n"
+                         "import com.qq.tars.protocol.annotation.TarsContext;\n\n");
         if (generateNano)
         {
             p->Print("import java.io.IOException;\n\n");
